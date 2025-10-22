@@ -1,4 +1,3 @@
-cat > README.md << 'EOF'
 # Face Verify Web
 
 Upload two images (ID + Photo) and verify if they belong to the same person.

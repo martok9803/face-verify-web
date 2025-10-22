@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Result • Face Verify</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 900px; margin: 36px auto; padding: 0 16px; }
+    .card { border: 1px solid #ddd; border-radius: 12px; padding: 20px; }
+    .ok { color: #0a7b2e; }
+    .bad { color: #b00020; }
+    img { max-width: 100%; border-radius: 10px; border: 1px solid #ddd; }
+    .meta { color:#333; font-size: 14px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .btns { display:flex; gap:12px; margin-top:12px; }
+    .btn { padding:10px 14px; border-radius:8px; border:1px solid #333; background:#111; color:#fff; text-decoration:none; }
+    .btn.light { background:#fff; color:#111; }
+    @media print {.btns, a { display:none !important; }.card { border:none; }}
+  </style>
+</head>
+<body>
+  <h1>Verification Result</h1>
+
+  {% if error %}
+    <p class="bad"><strong>Error:</strong> {{ error }}</p>
+    <p><a href="/">← Try again</a></p>
+  {% else %}
+    <div class="card">
+      <p class="{{ 'ok' if 'MATCH' in message else 'bad' }}"><strong>{{ message }}</strong></p>
+      <p class="meta">
+        Distance: {{ details.distance }} | Threshold: {{ details.threshold }} | Model: {{ details.model }}
+      </p>
+
+      {% if out_img_url %}
+        <div class="grid">
+          <div><img src="{{ out_img_url }}" alt="Matched faces" /></div>
+          <div>
+            <ul>
+              <li><a href="/output_images/matched/id_face.jpg" target="_blank">ID face</a></li>
+              <li><a href="/output_images/matched/photo_face.jpg" target="_blank">Photo face</a></li>
+              <li><a href="{{ out_img_url }}" target="_blank">Side-by-side</a></li>
+            </ul>
+          </div>
+        </div>
+      {% endif %}
+
+      <div class="btns">
+        <a class="btn" href="/">← Verify another pair</a>
+        <button class="btn light" onclick="window.print()">🖨 Print</button>
+      </div>
+    </div>
+  {% endif %}
+</body>
+</html>

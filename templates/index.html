@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Face Verification</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 900px; margin: 36px auto; padding: 0 16px; }
+    .card { border: 1px solid #ddd; border-radius: 12px; padding: 20px; }
+    .row { display: grid; gap: 12px; margin: 16px 0; }
+    button { padding: 10px 16px; border-radius: 8px; border: 1px solid #333; background: #111; color: #fff; cursor: pointer; }
+    button:hover { opacity: .9; }
+    input[type=file] { padding: 10px; border: 1px dashed #999; border-radius: 8px; background: #fafafa; }
+  </style>
+</head>
+<body>
+  <h1>Face Verification</h1>
+  <p>Upload two images: <strong>Picture 1 (ID)</strong> and <strong>Picture 2 (Photo)</strong>.</p>
+
+  <form class="card" action="/verify" method="post" enctype="multipart/form-data">
+    <div class="row">
+      <label>Picture 1 (ID): <input type="file" name="id_image" accept="image/*" required /></label>
+      <label>Picture 2 (Photo): <input type="file" name="photo_image" accept="image/*" required /></label>
+    </div>
+    <button type="submit">Verify</button>
+  </form>
+</body>
+</html>

@@ -1,0 +1,6 @@
+Flask
+dlib
+numpy
+deepface
+opencv-python
+tf-keras

@@ -1,0 +1,14 @@
+cat > .gitignore << 'EOF'
+__pycache__/
+*.pyc
+.venv/
+.env
+uploads/
+output_images/
+static/outputs/
+.deepface/
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+EOF
